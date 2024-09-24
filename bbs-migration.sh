@@ -42,16 +42,6 @@ migrate_repo() {
 # If a specific project and repo name is provided, migrate only that repo
 if [ -n "$SPECIFIC_PROJECT_KEY" ] && [ -n "$SPECIFIC_REPO_NAME" ]; then
   migrate_repo "$SPECIFIC_PROJECT_KEY" "$SPECIFIC_REPO_NAME"
-else
-  # Fetch repository list from Bitbucket Server project using REST API
-  repos=$(curl -sS -H "Authorization: Bearer $BITBUCKET_SERVER_TOKEN" \
-    "$BITBUCKET_SERVER_URL/rest/api/1.0/projects/$BITBUCKET_SERVER_PROJECT_KEY/repos?limit=100" | \
-    jq -r '.values[].slug')
-
-  # Iterate over all repositories and migrate them
-  for repo in $repos; do
-    migrate_repo "$BITBUCKET_SERVER_PROJECT_KEY" "$repo"
-  done
 fi
 
 echo "Migration process completed."
