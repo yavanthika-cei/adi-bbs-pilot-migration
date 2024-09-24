@@ -31,4 +31,5 @@ jobs:
         run: chmod +x bbs-migration.sh
 
       - name: Run Bitbucket Server to GitHub migration script
-        run: ./bbs-migration.sh
+        run: |
+          ./bbs-migration.sh "${{ secrets.BITBUCKET_SERVER_PROJECT_KEY }}" "hello-world-app"
