@@ -24,6 +24,13 @@ jobs:
         run: |
           gh extension install github/gh-gei
 
+      - name: Install the BBS2GH extension of the GitHub CLI
+        # env: 
+        #   GH_TOKEN: ${{ secrets.TOKEN }} 
+        run: |
+          gh extension install github/gh-bbs2gh
+          gh extension upgrade github/gh-bbs2gh
+
       - name: Set environment variables
         run: |
           echo "BITBUCKET_SERVER_URL=${{ secrets.BITBUCKET_SERVER_URL }}" >> $GITHUB_ENV
@@ -34,7 +41,13 @@ jobs:
 
       - name: Install jq (JSON processor)
         run: sudo apt-get install jq
-
+        
+      - name: Set additional environment variables
+        run: |
+          export GITHUB_TOKEN="${{ secrets.TOKEN }}"  # Set GitHub PAT
+          export BBS_USERNAME="${{ secrets.BBS_USERNAME }}"  # Set Bitbucket Server username
+          export BBS_PASSWORD="${{ secrets.BBS_PASSWORD }}"  # Set Bitbucket Server password
+          
       - name: Make migration script executable
         run: chmod +x bbs-migration.sh
 
