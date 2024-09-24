@@ -21,6 +21,10 @@ jobs:
       - name: Install GEI Extension
         run: |
           gh extension install github/gh-gei
+          
+      - name: Authenticate GitHub CLI with PAT
+        run: |
+          echo "${{ secrets.TOKEN }}" | gh auth login --with-token
 
       - name: Set environment variables
         run: |
