@@ -25,8 +25,8 @@ jobs:
           gh extension install github/gh-gei
 
       - name: Install the BBS2GH extension of the GitHub CLI
-        # env: 
-        #   GH_TOKEN: ${{ secrets.TOKEN }} 
+        env: 
+          GH_TOKEN: ${{ secrets.TOKEN }} 
         run: |
           gh extension install github/gh-bbs2gh
           gh extension upgrade github/gh-bbs2gh
