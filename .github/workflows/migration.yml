@@ -20,8 +20,8 @@ jobs:
         run: |
           echo "BITBUCKET_SERVER_URL=${{ secrets.BITBUCKET_SERVER_URL }}" >> $GITHUB_ENV
           echo "BITBUCKET_SERVER_TOKEN=${{ secrets.BITBUCKET_SERVER_TOKEN }}" >> $GITHUB_ENV
-          echo "GITHUB_ORG=${{ secrets.GITHUB_ORG }}" >> $GITHUB_ENV
-          echo "GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
+          echo "GITHUB_ORG=${{ secrets.ORG }}" >> $GITHUB_ENV
+          echo "GITHUB_TOKEN=${{ secrets.TOKEN }}" >> $GITHUB_ENV
           echo "BITBUCKET_SERVER_PROJECT_KEY=${{ secrets.BITBUCKET_SERVER_PROJECT_KEY }}" >> $GITHUB_ENV
 
       - name: Install jq (JSON processor)
