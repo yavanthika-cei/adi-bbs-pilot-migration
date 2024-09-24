@@ -26,15 +26,9 @@ migrate_repo() {
   echo "Migrating repository: $repo_slug from project: $project_key"
 
   # Run GEI migration command
-  gh gei migrate-repo \
-    --github-org "$GITHUB_ORG" \
-    --github-repo "$repo_slug" \
-    --bitbucket-server-url "$BITBUCKET_SERVER_URL" \
-    --bitbucket-server-token "$BITBUCKET_SERVER_TOKEN" \
-    --bitbucket-server-project-key "$project_key" \
-    --bitbucket-server-repo "$repo_slug" \
-    --github-token "$GITHUB_TOKEN" \
-    --wait
+  gh bbs2gh migrate-repo --bbs-server-url "$BITBUCKET_SERVER_URL" \
+  --bbs-project "$project_key" --bbs-repo "$repo_slug" \
+  --github-org "$GITHUB_ORG"
 
   echo "Repository $repo_slug from project $project_key migrated successfully!"
 }
