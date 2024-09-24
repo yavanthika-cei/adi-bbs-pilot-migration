@@ -19,12 +19,10 @@ jobs:
           sudo apt-get install gh -y
           
       - name: Install GEI Extension
+        env: 
+          GH_TOKEN: ${{ secrets.TOKEN }} 
         run: |
           gh extension install github/gh-gei
-          
-      - name: Authenticate GitHub CLI with PAT
-        run: |
-          echo "${{ secrets.TOKEN }}" | gh auth login --with-token
 
       - name: Set environment variables
         run: |
