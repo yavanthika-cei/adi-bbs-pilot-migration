@@ -1,0 +1,34 @@
+# migration.yml
+
+name: Bitbucket Server to GitHub Migration
+
+on:
+  workflow_dispatch: # Allows manual trigger of the migration workflow
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up GitHub CLI
+        uses: actions/setup-gh-cli@v2
+
+      - name: Set environment variables
+        run: |
+          echo "BITBUCKET_SERVER_URL=${{ secrets.BITBUCKET_SERVER_URL }}" >> $GITHUB_ENV
+          echo "BITBUCKET_SERVER_TOKEN=${{ secrets.BITBUCKET_SERVER_TOKEN }}" >> $GITHUB_ENV
+          echo "GITHUB_ORG=${{ secrets.GITHUB_ORG }}" >> $GITHUB_ENV
+          echo "GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
+          echo "BITBUCKET_SERVER_PROJECT_KEY=${{ secrets.BITBUCKET_SERVER_PROJECT_KEY }}" >> $GITHUB_ENV
+
+      - name: Install jq (JSON processor)
+        run: sudo apt-get install jq
+
+      - name: Make migration script executable
+        run: chmod +x bbs-migration.sh
+
+      - name: Run Bitbucket Server to GitHub migration script
+        run: ./bbs-migration.sh
