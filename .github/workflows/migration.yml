@@ -10,11 +10,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-        
-      - name: Enable Debug Logging
-        run: |
-          echo "ACTIONS_RUNNER_DEBUG=true" >> $GITHUB_ENV
-          echo "GH_DEBUG=true" >> $GITHUB_ENV
 
       - name: Install GitHub CLI
         run: |
@@ -56,14 +51,15 @@ jobs:
 
       - name: Run Bitbucket Server to GitHub migration script with detailed logging
         run: |
-            export GH_DEBUG=true
-            export ACTIONS_RUNNER_DEBUG=true
-            ./bbs-migration.sh "${{ secrets.BITBUCKET_SERVER_PROJECT_KEY }}" "hello-world-app" 2>&1 | tee migration.log
-        continue-on-error: true
+            # export GH_DEBUG=true
+            # export ACTIONS_RUNNER_DEBUG=true
+            ./bbs-migration.sh "${{ secrets.BITBUCKET_SERVER_PROJECT_KEY }}" "hello-world-app" 
+            # 2>&1 | tee migration.log
+        # continue-on-error: true
         
-      - name: Upload Logs
-        if: failure() || always()
-        uses: actions/upload-artifact@v3
-        with:
-          name: migration-logs
-          path: migration.log
+      # - name: Upload Logs
+      #   if: failure() || always()
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: migration-logs
+      #     path: migration.log
