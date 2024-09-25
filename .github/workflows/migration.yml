@@ -38,10 +38,12 @@ jobs:
           echo "GITHUB_ORG=${{ secrets.ORG }}" >> $GITHUB_ENV
           echo "GITHUB_TOKEN=${{ secrets.TOKEN }}" >> $GITHUB_ENV
           echo "BITBUCKET_SERVER_PROJECT_KEY=${{ secrets.BITBUCKET_SERVER_PROJECT_KEY }}" >> $GITHUB_ENV
-          echo "GH_PAT=${{ secrets.TOKEN }}" >> $GITHUB_ENV
-          echo "BBS_USERNAME=${{ secrets.BBS_USERNAME }}" >> $GITHUB_ENV
-          echo "BBS_PASSWORD=${{ secrets.BBS_PASSWORD }}" >> $GITHUB_ENV
-          echo "AZURE_STORAGE_CONNECTION_STRING=${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}" >> $GITHUB_ENV
+      
+      - name: Set additional environment variables
+        run: |
+          set GH_PAT="${{ secrets.TOKEN }}"
+          set BBS_USERNAME="${{ secrets.BBS_USERNAME }}"
+          set BBS_PASSWORD="${{ secrets.BBS_PASSWORD }}"
 
       - name: Install jq (JSON processor)
         run: sudo apt-get install jq
