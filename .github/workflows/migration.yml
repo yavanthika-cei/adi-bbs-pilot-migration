@@ -35,6 +35,10 @@ jobs:
         run: |
           gh extension install github/gh-bbs2gh
           gh extension upgrade github/gh-bbs2gh
+          
+      - name: Authentication status
+        run: |
+          gh auth status
 
       - name: Set environment variables
         run: |
