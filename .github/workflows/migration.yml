@@ -22,6 +22,12 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install gh -y
+
+      - name: Authenticate GitHub CLI
+        env:
+          GH_TOKEN: ${{ secrets.TOKEN }} 
+        run: |
+          gh auth login --with-token <<< "${{ secrets.TOKEN }}"
           
       - name: Install GEI Extension
         env: 
