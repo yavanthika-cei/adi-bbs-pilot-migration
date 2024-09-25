@@ -4,8 +4,8 @@
 set -e
 
 # Check if all required environment variables are set
-if [ -z "$BITBUCKET_SERVER_URL" ] || [ -z "$GITHUB_ORG" ] ; then
-  echo "Error: Environment variables BITBUCKET_SERVER_URL and GITHUB_ORG must be set."
+if [ -z "$BITBUCKET_SERVER_URL" ] || [ -z "$GITHUB_ORG" ] || [ -z "$GH_PAT" ] || [ -z "$BBS_USERNAME" ]|| [ -z "$BBS_PASSWORD" ]; then
+  echo "Error: Environment variables BITBUCKET_SERVER_URL, GH_PAT, BBS_USERNAME, BBS_PASSWORD and GITHUB_ORG must be set."
   exit 1
 fi
 
@@ -13,7 +13,7 @@ fi
 BITBUCKET_SERVER_PROJECT_KEY=${BITBUCKET_SERVER_PROJECT_KEY:-"MY_PROJECT"}
 BITBUCKET_SERVER_URL=${BITBUCKET_SERVER_URL}
 GITHUB_ORG=${GITHUB_ORG}
-GITHUB_TOKEN=${GITHUB_TOKEN}
+GH_PAT=${GH_PAT}
 SPECIFIC_PROJECT_KEY=$1
 SPECIFIC_REPO_NAME=$2
 
