@@ -4,8 +4,8 @@
 set -e
 
 # Check if all required environment variables are set
-if [ -z "$BITBUCKET_SERVER_URL" ] || [ -z "$BITBUCKET_SERVER_TOKEN" ] || [ -z "$GITHUB_ORG" ] || [ -z "$GITHUB_TOKEN" ]; then
-  echo "Error: Environment variables BITBUCKET_SERVER_URL, BITBUCKET_SERVER_TOKEN, GITHUB_ORG, and GITHUB_TOKEN must be set."
+if [ -z "$BITBUCKET_SERVER_URL" ] || [ -z "$GITHUB_ORG" ] ; then
+  echo "Error: Environment variables BITBUCKET_SERVER_URL and GITHUB_ORG must be set."
   exit 1
 fi
 
