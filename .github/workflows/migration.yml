@@ -15,8 +15,8 @@ jobs:
         
       - name: Enable Debug Logging
         run: |
-          echo "::set-env name=ACTIONS_RUNNER_DEBUG::true"
-          echo "::set-env name=GH_DEBUG::true"
+          echo "ACTIONS_RUNNER_DEBUG=true" >> $GITHUB_ENV
+          echo "GH_DEBUG=true" >> $GITHUB_ENV
 
       - name: Install GitHub CLI
         run: |
