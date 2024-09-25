@@ -39,16 +39,12 @@ jobs:
           echo "GITHUB_TOKEN=${{ secrets.TOKEN }}" >> $GITHUB_ENV
           echo "BITBUCKET_SERVER_PROJECT_KEY=${{ secrets.BITBUCKET_SERVER_PROJECT_KEY }}" >> $GITHUB_ENV
           echo "GH_PAT=${{ secrets.TOKEN }}" >> $GITHUB_ENV
+          echo "BBS_USERNAME=${{ secrets.BBS_USERNAME }}" >> $GITHUB_ENV
+          echo "BBS_PASSWORD=${{ secrets.BBS_PASSWORD }}" >> $GITHUB_ENV
+          echo "AZURE_STORAGE_CONNECTION_STRING=${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}" >> $GITHUB_ENV
 
       - name: Install jq (JSON processor)
         run: sudo apt-get install jq
-        
-      - name: Set additional environment variables
-        run: |
-          export GH_PAT="${{ secrets.TOKEN }}"  # Set GitHub PAT
-          export BBS_USERNAME="${{ secrets.BBS_USERNAME }}"  # Set Bitbucket Server username
-          export BBS_PASSWORD="${{ secrets.BBS_PASSWORD }}"  # Set Bitbucket Server password
-          export AZURE_STORAGE_CONNECTION_STRING="${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}"
           
       - name: Make migration script executable
         run: chmod +x bbs-migration.sh
