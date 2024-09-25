@@ -25,9 +25,9 @@ jobs:
 
       - name: Authenticate GitHub CLI
         env:
-          GH_TOKEN: ${{ secrets.TOKEN }} 
+          GH_TOKEN: ${{ secrets.TOKEN }}  # Use your PAT
         run: |
-          gh auth login --with-token <<< "${{ secrets.TOKEN }}"
+          echo $GH_TOKEN | gh auth login --with-token
           
       - name: Install GEI Extension
         env: 
