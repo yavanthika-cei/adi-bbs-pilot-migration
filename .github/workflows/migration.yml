@@ -57,9 +57,10 @@ jobs:
       - name: Run Bitbucket Server to GitHub migration script with logging
         run: |
           ./bbs-migration.sh "${{ secrets.BITBUCKET_SERVER_PROJECT_KEY }}" "hello-world-app" 2>&1 | tee migration.log
-      
+        continue-on-error: true
+        
       - name: Upload Logs
-        if: failure()
+        if: failure() || always()
         uses: actions/upload-artifact@v3
         with:
           name: migration-logs
