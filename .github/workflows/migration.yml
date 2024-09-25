@@ -38,6 +38,7 @@ jobs:
           echo "GITHUB_ORG=${{ secrets.ORG }}" >> $GITHUB_ENV
           echo "GITHUB_TOKEN=${{ secrets.TOKEN }}" >> $GITHUB_ENV
           echo "BITBUCKET_SERVER_PROJECT_KEY=${{ secrets.BITBUCKET_SERVER_PROJECT_KEY }}" >> $GITHUB_ENV
+          echo "GH_PAT=${{ secrets.TOKEN }}" >> $GITHUB_ENV
 
       - name: Install jq (JSON processor)
         run: sudo apt-get install jq
