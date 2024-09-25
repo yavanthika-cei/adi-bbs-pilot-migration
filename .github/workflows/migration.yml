@@ -12,6 +12,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        
+      - name: Enable Debug Logging
+        run: |
+          echo "::set-env name=ACTIONS_RUNNER_DEBUG::true"
+          echo "::set-env name=GH_DEBUG::true"
 
       - name: Install GitHub CLI
         run: |
@@ -38,12 +43,10 @@ jobs:
           echo "GITHUB_ORG=${{ secrets.ORG }}" >> $GITHUB_ENV
           echo "GITHUB_TOKEN=${{ secrets.TOKEN }}" >> $GITHUB_ENV
           echo "BITBUCKET_SERVER_PROJECT_KEY=${{ secrets.BITBUCKET_SERVER_PROJECT_KEY }}" >> $GITHUB_ENV
-      
-      - name: Set additional environment variables
-        run: |
-          set GH_PAT="${{ secrets.TOKEN }}"
-          set BBS_USERNAME="${{ secrets.BBS_USERNAME }}"
-          set BBS_PASSWORD="${{ secrets.BBS_PASSWORD }}"
+          echo "GH_PAT=${{ secrets.TOKEN }}" >> $GITHUB_ENV
+          echo "BBS_USERNAME=${{ secrets.BBS_USERNAME }}" >> $GITHUB_ENV
+          echo "BBS_PASSWORD=${{ secrets.BBS_PASSWORD }}" >> $GITHUB_ENV
+          echo "AZURE_STORAGE_CONNECTION_STRING=${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}" >> $GITHUB_ENV
 
       - name: Install jq (JSON processor)
         run: sudo apt-get install jq
@@ -51,6 +54,13 @@ jobs:
       - name: Make migration script executable
         run: chmod +x bbs-migration.sh
 
-      - name: Run Bitbucket Server to GitHub migration script
+      - name: Run Bitbucket Server to GitHub migration script with logging
         run: |
-          ./bbs-migration.sh "${{ secrets.BITBUCKET_SERVER_PROJECT_KEY }}" "hello-world-app"
+          ./bbs-migration.sh "${{ secrets.BITBUCKET_SERVER_PROJECT_KEY }}" "hello-world-app" 2>&1 | tee migration.log
+      
+      - name: Upload Logs
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: migration-logs
+          path: migration.log
