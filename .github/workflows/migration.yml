@@ -58,10 +58,13 @@ jobs:
       - name: Make migration script executable
         run: chmod +x bbs-migration.sh
 
-      - name: Run Bitbucket Server to GitHub migration script with logging
+      - name: Run Bitbucket Server to GitHub migration script with detailed logging
         run: |
-          ./bbs-migration.sh "${{ secrets.BITBUCKET_SERVER_PROJECT_KEY }}" "hello-world-app" 2>&1 | tee migration.log
-        continue-on-error: true
+            export GH_DEBUG=true
+            export ACTIONS_RUNNER_DEBUG=true
+            ./bbs-migration.sh "${{ secrets.BITBUCKET_SERVER_PROJECT_KEY }}" "hello-world-app" 2>&1 | tee migration.log
+            continue-on-error: true
+
         
       - name: Upload Logs
         if: failure() || always()
