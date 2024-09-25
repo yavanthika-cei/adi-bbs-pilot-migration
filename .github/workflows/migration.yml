@@ -44,7 +44,7 @@ jobs:
         
       - name: Set additional environment variables
         run: |
-          export GITHUB_TOKEN="${{ secrets.TOKEN }}"  # Set GitHub PAT
+          export GH_PAT="${{ secrets.TOKEN }}"  # Set GitHub PAT
           export BBS_USERNAME="${{ secrets.BBS_USERNAME }}"  # Set Bitbucket Server username
           export BBS_PASSWORD="${{ secrets.BBS_PASSWORD }}"  # Set Bitbucket Server password
           export AZURE_STORAGE_CONNECTION_STRING="${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}"
