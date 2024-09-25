@@ -14,7 +14,6 @@ BITBUCKET_SERVER_PROJECT_KEY=${BITBUCKET_SERVER_PROJECT_KEY:-"MY_PROJECT"}
 BITBUCKET_SERVER_URL=${BITBUCKET_SERVER_URL}
 GITHUB_ORG=${GITHUB_ORG}
 GITHUB_TOKEN=${GITHUB_TOKEN}
-BITBUCKET_SERVER_TOKEN=${BITBUCKET_SERVER_TOKEN}
 SPECIFIC_PROJECT_KEY=$1
 SPECIFIC_REPO_NAME=$2
 
@@ -26,7 +25,7 @@ migrate_repo() {
   echo "Migrating repository: $repo_slug from project: $project_key"
 
   # Run GEI migration command
-  gh bbs2gh migrate-repo --bbs-server-url "$BITBUCKET_SERVER_TOKEN" \
+  gh bbs2gh migrate-repo --bbs-server-url "$BITBUCKET_SERVER_URL" \
   --bbs-project "$project_key" --bbs-repo "hello-world-app" \
   --github-org "$GITHUB_ORG" --github-repo "$repo_slug"
 
