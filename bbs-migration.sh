@@ -15,7 +15,7 @@ fi
 # GITHUB_ORG=${GITHUB_ORG}
 # GH_PAT=${GH_PAT}
 # BITBUCKET_SHARED_HOME="/var/atlassian/application-data/bitbucket/shared"
-echo $BITBUCKET_SHARED_HOME
+
 # ARCHIVE_DIR="$BITBUCKET_SHARED_HOME/data/migration/export/"
 # SPECIFIC_PROJECT_KEY=$1
 # SPECIFIC_REPO_NAME=$2
@@ -51,7 +51,7 @@ ARCHIVE_PATH="${ARCHIVE_DIR}${LATEST_ARCHIVE}"
   # --bbs-server-url "$BBS_SERVER_URL" \
   # --bbs-project "$BITBUCKET_SERVER_PROJECT_KEY" \
   # --bbs-repo "$SPECIFIC_REPO_NAME"
-
+  echo "$BITBUCKET_SHARED_HOME"
   echo "Repository $SPECIFIC_REPO_NAME from project $SPECIFIC_PROJECT_KEY migrated successfully!"
 # }
 
