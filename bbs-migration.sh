@@ -10,15 +10,15 @@ if [ -z "$BITBUCKET_SERVER_URL" ] || [ -z "$GITHUB_ORG" ] || [ -z "$GH_PAT" ] ||
 fi
 
 # Variables
-BITBUCKET_SERVER_PROJECT_KEY=${BITBUCKET_SERVER_PROJECT_KEY}
-BITBUCKET_SERVER_URL=${BITBUCKET_SERVER_URL}
-GITHUB_ORG=${GITHUB_ORG}
-GH_PAT=${GH_PAT}
+# BITBUCKET_SERVER_PROJECT_KEY=${BITBUCKET_SERVER_PROJECT_KEY}
+# BITBUCKET_SERVER_URL=${BITBUCKET_SERVER_URL}
+# GITHUB_ORG=${GITHUB_ORG}
+# GH_PAT=${GH_PAT}
 # BITBUCKET_SHARED_HOME="/var/atlassian/application-data/bitbucket/shared"
 echo $BITBUCKET_SHARED_HOME
-ARCHIVE_DIR="$BITBUCKET_SHARED_HOME/data/migration/export/"
-SPECIFIC_PROJECT_KEY=$1
-SPECIFIC_REPO_NAME=$2
+# ARCHIVE_DIR="$BITBUCKET_SHARED_HOME/data/migration/export/"
+# SPECIFIC_PROJECT_KEY=$1
+# SPECIFIC_REPO_NAME=$2
 
 # Step 1: Fetch the latest archive file from the export directory
 # LATEST_ARCHIVE=$(ls -t $ARCHIVE_DIR | grep 'Bitbucket_export_' | head -n 1)
@@ -41,9 +41,9 @@ ARCHIVE_PATH="${ARCHIVE_DIR}${LATEST_ARCHIVE}"
   # echo "Migrating repository: $repo_slug from project: $project_key"
 
   # Run GEI migration command
-  gh bbs2gh migrate-repo --bbs-server-url "$BITBUCKET_SERVER_URL" \
-  --bbs-project "$BITBUCKET_SERVER_PROJECT_KEY" \
-  --bbs-repo "$SPECIFIC_REPO_NAME"
+  # gh bbs2gh migrate-repo --bbs-server-url "$BITBUCKET_SERVER_URL" \
+  # --bbs-project "$BITBUCKET_SERVER_PROJECT_KEY" \
+  # --bbs-repo "$SPECIFIC_REPO_NAME"
 
   # gh bbs2gh migrate-repo --archive-path "$ARCHIVE_PATH" \
   # --github-org "$GITHUB_ORG" \
