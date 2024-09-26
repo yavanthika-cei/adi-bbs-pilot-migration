@@ -29,7 +29,7 @@ SPECIFIC_REPO_NAME=$2
   --bbs-project "$SPECIFIC_PROJECT_KEY" --bbs-repo "$SPECIFIC_REPO_NAME" \
   --github-org "$GITHUB_ORG" --github-repo "$SPECIFIC_REPO_NAME"
 
-  echo "Repository $repo_slug from project $project_key migrated successfully!"
+  echo "Repository $SPECIFIC_REPO_NAME from project $SPECIFIC_PROJECT_KEY migrated successfully!"
 # }
 
 # If a specific project and repo name is provided, migrate only that repo
